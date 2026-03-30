@@ -6,7 +6,7 @@ The **Mantle AI Suite** is a collection of agentic security and community intell
 
 ---
 
-## 🚀 The Three Pillars
+##  The Three Pillars
 
 ### 1. 🛡️ Mantle Aegis (The Enforcer)
 **Real-time Transaction Shield.** Aegis is an autonomous AI agent that intercepts malicious transaction prompts before you sign. 
