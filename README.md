@@ -26,7 +26,7 @@ The **Mantle AI Suite** is a collection of agentic security and community intell
 
 ---
 
-## 🏗️ Technical Architecture
+##  Technical Architecture
 
 The Mantle AI Suite leverages the unique modular architecture of the **Mantle Network**:
 
@@ -36,7 +36,7 @@ The Mantle AI Suite leverages the unique modular architecture of the **Mantle Ne
 
 ---
 
-## 🛠️ Local Development
+##  Local Development
 
 This repository contains a high-fidelity interactive dashboard for the Mantle AI Suite.
 
@@ -52,7 +52,7 @@ This repository contains a high-fidelity interactive dashboard for the Mantle AI
 
 ---
 
-## 🌌 Vision
+##  Vision
 
 Built for the **Mantle Squad Bounty: When AI Meets Mantle**. This project represents a shift from passive security alerts to **active, autonomous protection and intelligence** for the next billion users on Mantle.
 
