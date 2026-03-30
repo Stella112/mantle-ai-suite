@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantle AI Ecosystem</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mantle AI Suite</h1>
+        <p>Interactive Ecosystem Demo</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTheme(this, 'aegis')">🛡️ Aegis</button>
+        <button class="tab-btn" onclick="switchTheme(this, 'pulse')">📊 Pulse</button>
+        <button class="tab-btn" onclick="switchTheme(this, 'guard')">🔍 Guard</button>
+    </div>
+
+    <div class="content-area">
+        
+        <!-- AEGIS -->
+        <div id="aegis" class="module active">
+            <div class="module-desc">
+                <h2>🛡️ Mantle Aegis (Live Intercept)</h2>
+                <p>Click the "Block Transaction" button below to test the active shielding mechanism.</p>
+                <div style="margin-top: 30px;">
+                    <span style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Vision Mockup Design</span>
+                    <img src="assets/aegis_intercept_mockup_1774893269742.png" style="width: 100%; max-width: 400px; border-radius: 12px; margin-top: 10px; border: 1px solid var(--mantle-border); box-shadow: 0 10px 30px rgba(0,255,213,0.05); display: block;">
+                </div>
+            </div>
+            <div class="ui-preview">
+                <div class="aegis-card" id="aegis-main">
+                    <div class="scanline"></div>
+                    <div style="color:var(--danger-red); font-weight:bold; margin-bottom:16px;">⚠️ INTERCEPTED TX</div>
+                    <div class="risk-circle">
+                        <div class="score">99</div>
+                        <div style="font-size:10px;">CRITICAL</div>
+                    </div>
+                    <div class="log-item">🔴 <b>HONEYPOT DETECTED</b><br>Hidden `clearETH()` function embedded in target contract.</div>
+                    <button class="btn-block" onclick="blockTx()">Block & Secure Assets</button>
+                    <div id="aegis-status" style="margin-top:10px; color:var(--safe-green); font-size:13px; font-weight:bold; display:none;">Transaction Blocked! Funds Secured. ✅</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PULSE -->
+        <div id="pulse" class="module">
+            <div class="module-desc">
+                <h2>📊 MantlePulse (CRM Board)</h2>
+                <p>Type a wallet address or name in the search bar below to filter the CRM dynamically.</p>
+                <div style="margin-top: 30px;">
+                    <span style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Vision Mockup Design</span>
+                    <img src="assets/pulse_dashboard_1774893688407.png" style="width: 100%; max-width: 400px; border-radius: 12px; margin-top: 10px; border: 1px solid var(--mantle-border); box-shadow: 0 10px 30px rgba(0,255,213,0.05); display: block;">
+                </div>
+            </div>
+            <div class="ui-preview">
+                <div class="pulse-board">
+                    <input type="text" class="search-bar" id="pulseSearch" placeholder="Search wallets or users..." onkeyup="filterUsers()">
+                    
+                    <div class="user-row pulse-user">
+                        <div>
+                            <div style="font-weight:bold; font-size:14px; margin-bottom:4px;">0x71C...3E9 (Alice)</div>
+                            <div style="font-size:11px; color:var(--mantle-teal);">Verified Human</div>
+                        </div>
+                        <div style="font-size:18px; font-weight:bold; color:var(--mantle-teal);">98</div>
+                    </div>
+
+                    <div class="user-row pulse-user">
+                        <div>
+                            <div style="font-weight:bold; font-size:14px; margin-bottom:4px;">0x4A2...1F1 (Bob)</div>
+                            <div style="font-size:11px; color:#ff4d4d;">Probable Sybil Bot</div>
+                        </div>
+                        <div style="font-size:18px; font-weight:bold; color:#ff4d4d;">12</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- GUARD -->
+        <div id="guard" class="module">
+            <div class="module-desc">
+                <h2>🔍 MantleGuard (Analyst Chat)</h2>
+                <p>You can actually type a question below and hit "Scan" to trigger the AI prompt!</p>
+                <div style="margin-top: 30px;">
+                    <span style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Vision Mockup Design</span>
+                    <img src="assets/guard_chat_1774893707297.png" style="width: 100%; max-width: 400px; border-radius: 12px; margin-top: 10px; border: 1px solid var(--mantle-border); box-shadow: 0 10px 30px rgba(0,255,213,0.05); display: block;">
+                </div>
+            </div>
+            <div class="ui-preview">
+                <div class="guard-app">
+                    <div class="chat-window" id="chatWindow">
+                        <div class="msg ai">Hello! I am MantleGuard. Paste a contract address or token name below for an instant audit.</div>
+                    </div>
+                    <div class="typing" id="typingIndicator">Guard is analyzing chain data...</div>
+                    <div class="input-area">
+                        <input type="text" id="chatInput" placeholder="Enter contract to scan..." onkeypress="handleEnter(event)">
+                        <button onclick="sendAnalysis()">Scan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab logic
+        function switchTheme(btnElement, tabId) {
+            document.querySelectorAll('.module').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // Aegis Logic
+        function blockTx() {
+            const card = document.getElementById('aegis-main');
+            card.style.borderColor = 'var(--safe-green)';
+            document.querySelector('.risk-circle').style.borderColor = 'var(--safe-green)';
+            document.querySelector('.risk-circle .score').style.color = 'var(--safe-green)';
+            document.querySelector('.risk-circle .score').innerText = '00';
+            document.getElementById('aegis-status').style.display = 'block';
+            document.querySelector('.btn-block').style.display = 'none';
+        }
+
+        // Pulse Logic
+        function filterUsers() {
+            const query = document.getElementById('pulseSearch').value.toLowerCase();
+            const users = document.querySelectorAll('.pulse-user');
+            users.forEach(user => {
+                const text = user.innerText.toLowerCase();
+                if(text.includes(query)) user.style.display = 'flex';
+                else user.style.display = 'none';
+            });
+        }
+
+        // Guard Logic
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendAnalysis();
+        }
+
+        function sendAnalysis() {
+            const input = document.getElementById('chatInput');
+            const chatWindow = document.getElementById('chatWindow');
+            const typing = document.getElementById('typingIndicator');
+            const text = input.value.trim();
+            if(!text) return;
+
+            // Add user message
+            chatWindow.innerHTML += `<div class="msg user">${text}</div>`;
+            input.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Simulate AI typing
+            typing.style.display = 'block';
+            
+            setTimeout(() => {
+                typing.style.display = 'none';
+                const auditResult = `
+                    <b>Audit Complete! ✅</b><br><br>
+                    • Contract: Safe. No mint functions.<br>
+                    • Developer: Verified. Multiple successful deployments.<br>
+                    • Utility: Strong on-chain volume.<br>
+                    <br>Green light to proceed!
+                `;
+                chatWindow.innerHTML += `<div class="msg ai">${auditResult}</div>`;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
